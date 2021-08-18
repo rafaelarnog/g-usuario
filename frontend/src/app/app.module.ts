@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PerfisModule } from './perfis/perfis.module';
 import { TemplateModule } from './template/template.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     TemplateModule,
     CargosModule,
     PerfisModule,
-    UsuariosModule
+    UsuariosModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

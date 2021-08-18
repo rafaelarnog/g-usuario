@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import '~@swimlane/ngx-datatable/index.css';
+@import 'material-icons/iconfont/material-icons.css';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+//Ícones
+.material-icons-outlined {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+}
+
+.material-icons-outlined.md-18 {font-size: 18px;}
+.material-icons-outlined.md-20 {font-size: 20px;}
+
+//Conteudo seções
+.conteudo-secao {
+    margin-right: 5% !important;
+    margin-left: 5% !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+}
+
+.titulo-secao {
+    margin-bottom: 20px;
+}
+
+//Conteudo seções cards
+.titulo-secao-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-card-conteudo {
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.btn-cancelar {
+    margin-right: 5px;
+}
+
+//Tabelas
+.datatable-header-cell-wrapper,
+.datatable-body-cell-label {
+    font-size: 15px !important;
+}
+
+.empty-row {
+    margin-top: 10px;
+    text-align: center !important;
+}

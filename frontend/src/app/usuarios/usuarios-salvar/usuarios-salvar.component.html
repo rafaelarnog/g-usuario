@@ -1,0 +1,60 @@
+<div class="container-fluid modal-content">
+    <div class="row modal-body">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2 class="titulo-secao-card">Cadastrar Usuário</h2>
+            </div>
+            <form class="form-card-conteudo">
+                <div>
+                    <div class="mb-3">
+                        <label for="inputNomeUsuario" class="form-label">Nome *</label>
+                        <input type="text" class="form-control" id="inputNomeUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputCpfUsuario" class="form-label">Cpf *</label>
+                        <input type="text" class="form-control" id="inputCpfUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputDataNascimentoUsuario" class="form-label">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="inputDataNascimentoUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputSexoUsuario" class="form-label">Sexo</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Feminino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Masculino
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputCargoUsuario" class="form-label">Cargo *</label>
+                        <select class="form-select">
+                            <option selected>Selecione...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPerfisUsuario" class="form-label">Perfil</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Perfil 1
+                            </label>
+                        </div>
+                        <div class="form-text">* Obrigatório</div>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

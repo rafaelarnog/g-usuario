@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2 class="titulo-secao-card">Cadastrar Cargo</h2>
+            </div>
+            <form class="form-card-conteudo">
+                <div class="mb-3">
+                  <label for="inputNomeCargo" class="form-label">Nome do cargo *</label>
+                  <input type="text" class="form-control" id="inputNomeCargo">
+                  <div class="form-text">* Obrigatório</div>
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,67 @@
-<p>perfis-lista works!</p>
+<div class="conteudo-secao">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Perfis</li>
+        </ol>
+    </nav>
+    <div class="conteiner-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-left">
+                    <h2 class="titulo-secao">Perfis</h2>
+                </div>
+            </div>
+            <div class="col-md-6 text-end">
+                <a class="btn btn-outline-primary" (click)="openModalPerfis()"><span class="material-icons-outlined md-20">add</span>Adicionar Perfil</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="tabela-perfil">
+                <ngx-datatable
+                    class="material"
+                    [rows]="perfis"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    rowHeight="auto"
+                    [externalPaging]="false"
+                    [externalSorting]="false"
+                    [columnMode]="columnMode"
+                    [loadingIndicator]="loading"
+                    [messages]="messagesTable"
+                >
+                    <ngx-datatable-column [sortable]="true" prop="id" name="#" [width]="5">
+                        <ng-template
+                            let-row="row"
+                            let-value="value"
+                            ngx-datatable-cell-template
+                        >
+                            <i>{{ value }}</i>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [sortable]="true" prop="nome" name="Nome">
+                        <ng-template
+                            let-row="row"
+                            let-value="value"
+                            ngx-datatable-cell-template
+                        >
+                            <i>{{ value }}</i>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [sortable]="false" name="" prop="id">
+                        <ng-template
+                            let-row="row"
+                            let-value="value"
+                            ngx-datatable-cell-template
+                        >
+                            <div class="text-center">
+                                <a class="btn btn-primary"><span class="material-icons-outlined md-18">edit</span>Editar</a>
+                                <a class="btn btn-danger"><span class="material-icons-outlined md-18">delete</span>Apagar</a>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</div>
