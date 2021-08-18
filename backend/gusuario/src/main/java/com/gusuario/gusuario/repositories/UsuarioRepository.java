@@ -1,2 +1,9 @@
-package com.gusuario.gusuario.repositories;public interface UsuarioRepository {
+package com.gusuario.gusuario.repositories;
+
+import com.gusuario.gusuario.entities.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 }
