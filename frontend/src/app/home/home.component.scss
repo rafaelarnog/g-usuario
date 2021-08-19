@@ -1,0 +1,17 @@
+#conteudo-home {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin-top: 10%;
+    width: 50%;
+    height: 40vh;
+    background-color: #f0f7ff;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

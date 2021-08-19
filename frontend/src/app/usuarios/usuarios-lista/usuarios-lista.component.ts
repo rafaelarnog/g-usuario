@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Usuario } from '../usuario';
@@ -10,7 +10,7 @@ import { UsuariosService } from '../usuarios.service';
   templateUrl: './usuarios-lista.component.html',
   styleUrls: ['./usuarios-lista.component.scss']
 })
-export class UsuariosListaComponent implements OnInit {
+export class UsuariosListaComponent implements OnInit, AfterViewInit {
 
   //Usuário
   usuarios: Usuario[] = [];
@@ -35,6 +35,19 @@ export class UsuariosListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsuarios();
+  }
+
+  ngAfterViewInit() {
+    var navLink = document.getElementsByClassName('nav-item');
+
+    if (navLink != null) {
+      for (var i = 0; i < navLink.length; i++) {
+        navLink[i].classList.remove('active');
+      }
+    }
+
+    var element = document.getElementById('nav-usuarios');
+    element?.classList.add('active');
   }
 
   openModalUsuarios(id: number) {

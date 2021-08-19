@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Cargo } from '../cargo';
@@ -10,7 +10,7 @@ import { CargosService } from '../cargos.service';
   templateUrl: './cargos-lista.component.html',
   styleUrls: ['./cargos-lista.component.scss']
 })
-export class CargosListaComponent implements OnInit {
+export class CargosListaComponent implements OnInit, AfterViewInit {
 
   //Cargos
   cargos: Cargo[] = [];
@@ -36,6 +36,19 @@ export class CargosListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCargos();
+  }
+
+  ngAfterViewInit() {
+    var navLink = document.getElementsByClassName('nav-item');
+
+    if (navLink != null) {
+      for (var i = 0; i < navLink.length; i++) {
+        navLink[i].classList.remove('active');
+      }
+    }
+
+    var element = document.getElementById('nav-cargos');
+    element?.classList.add('active');
   }
 
   openModalCargos(id: number) {

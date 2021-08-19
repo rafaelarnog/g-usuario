@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Perfil } from '../perfil';
@@ -11,7 +11,7 @@ import { PerfisService } from '../perfis.service';
   templateUrl: './perfis-lista.component.html',
   styleUrls: ['./perfis-lista.component.scss']
 })
-export class PerfisListaComponent implements OnInit {
+export class PerfisListaComponent implements OnInit, AfterViewInit {
 
   //Perfis
   perfis: Perfil[] = [];
@@ -36,6 +36,19 @@ export class PerfisListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPerfis();
+  }
+
+  ngAfterViewInit() {
+    var navLink = document.getElementsByClassName('nav-item');
+
+    if (navLink != null) {
+      for (var i = 0; i < navLink.length; i++) {
+        navLink[i].classList.remove('active');
+      }
+    }
+
+    var element = document.getElementById('nav-perfis');
+    element?.classList.add('active');
   }
 
   openModalPerfis(id: number) {

@@ -1,0 +1,43 @@
+//Navbar
+
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-blue {
+    background-color: #4682B4 !important;
+}
+
+.navbar-blue a {
+    color: #fff;
+}
+
+//Links navbar
+
+.nav-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-item.active,
+.nav-item.active:hover {
+    background-color: #fff;
+    font-weight: 600;
+}
+
+.nav-item.active a {
+    color: #4682B4;
+}
+
+.nav-item:hover {
+    background-color: #97bcda;
+}
+
+//Icone
+
+.navbar-toggler {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff !important;
+}
