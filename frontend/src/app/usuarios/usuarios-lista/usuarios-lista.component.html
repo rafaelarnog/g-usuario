@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-end">
-                <a class="btn btn-outline-primary" (click)="openModalUsuarios()"><span class="material-icons-outlined md-20">add</span>Adicionar Usuário</a>
+                <a class="btn btn-outline-primary" (click)="openModalUsuarios(0)"><span class="material-icons-outlined md-20">add</span>Adicionar Usuário</a>
             </div>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <p>{{ value }}</p>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="nome" name="Nome" [width]="150">
@@ -45,7 +45,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <p>{{ value }}</p>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="cpf" name="CPF" [width]="100">
@@ -54,7 +54,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <p>{{ value }}</p>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="dataNascimento" name="Data de Nascimento">
@@ -63,7 +63,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <p>{{ value | date: "dd/MM/yyyy":"UTC" }}</p>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="sexo" name="Sexo" [width]="30">
@@ -72,7 +72,10 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <div>
+                                <p *ngIf="value == 'FEMININO'">F</p>
+                                <p *ngIf="value == 'MASCULINO'">M</p>
+                            </div>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="cargo" name="Cargo">
@@ -81,7 +84,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <p>{{ value.nome }}</p>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="true" prop="perfis" name="Perfis">
@@ -90,7 +93,9 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
-                            <i>{{ value }}</i>
+                            <div *ngFor="let p of value">
+                                <p>{{ p.nome }}</p>
+                            </div>
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [sortable]="false" name="" prop="id">
@@ -100,8 +105,7 @@
                             ngx-datatable-cell-template
                         >
                             <div class="text-center">
-                                <a class="btn btn-primary"><span class="material-icons-outlined md-18">edit</span>Editar</a>
-                                <a class="btn btn-danger"><span class="material-icons-outlined md-18">delete</span>Apagar</a>
+                                <button class="btn btn-primary" (click)="openModalUsuarios(value)"><span class="material-icons-outlined md-18">edit</span>Editar</button>
                             </div>
                         </ng-template>
                     </ngx-datatable-column>

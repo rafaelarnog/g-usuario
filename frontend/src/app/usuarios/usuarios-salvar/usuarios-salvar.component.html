@@ -2,32 +2,32 @@
     <div class="row modal-body">
         <div class="col-md-12">
             <div class="text-center">
-                <h2 class="titulo-secao-card">Cadastrar Usuário</h2>
+                <h2 class="titulo-secao-card">{{ titulo }}</h2>
             </div>
-            <form class="form-card-conteudo">
+            <form #usuarioForm="ngForm" (ngSubmit)="save()" class="form-card-conteudo">
                 <div>
                     <div class="mb-3">
                         <label for="inputNomeUsuario" class="form-label">Nome *</label>
-                        <input type="text" class="form-control" id="inputNomeUsuario">
+                        <input type="text" class="form-control" id="inputNomeUsuario" name="nome" [(ngModel)]="usuario.nome">
                     </div>
                     <div class="mb-3">
                         <label for="inputCpfUsuario" class="form-label">Cpf *</label>
-                        <input type="text" class="form-control" id="inputCpfUsuario">
+                        <input type="text" class="form-control" id="inputCpfUsuario" name="cpf" [(ngModel)]="usuario.cpf">
                     </div>
                     <div class="mb-3">
                         <label for="inputDataNascimentoUsuario" class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="inputDataNascimentoUsuario">
+                        <input type="date" class="form-control" id="inputDataNascimentoUsuario" name="dataNascimento" [(ngModel)]="dataNascUsuario">
                     </div>
                     <div class="mb-3">
                         <label for="inputSexoUsuario" class="form-label">Sexo</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" name="sexo" [(ngModel)]="usuario.sexo" value="FEMININO" type="radio" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Feminino
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" name="sexo" [(ngModel)]="usuario.sexo" value="MASCULINO" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Masculino
                             </label>
@@ -35,24 +35,33 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputCargoUsuario" class="form-label">Cargo *</label>
-                        <select class="form-select">
-                            <option selected>Selecione...</option>
+                        <select [(ngModel)]="cargoId" name="cargoId" class="form-select" (change)="getCargo()">
+                            <option selected value="0">Selecione...</option>
+                            <option *ngFor="let opt of cargos" value="{{opt.id}}">{{opt.nome}}</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="inputPerfisUsuario" class="form-label">Perfil</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Perfil 1
+                        <div class="form-check" *ngFor="let p of perfis">
+                            <input 
+                                class="form-check-input"
+                                type="checkbox"
+                                id="checkbox-{{p.id}}"
+                                [value]="p.id"
+                                [checked]="isChecked(p) == true"
+                                (change)="onCheckboxChangeFn(p)"
+                            />
+                            <label class="form-check-label" for="checkbox-{{p.id}}">
+                                {{p.nome}}
                             </label>
                         </div>
+                        
                         <div class="form-text">* Obrigatório</div>
                     </div>
                 </div>
                 <div class="text-end">
                     <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">{{ acao }}</button>
                 </div>
             </form>
         </div>

@@ -4,6 +4,7 @@ import { UsuariosListaComponent } from './usuarios-lista/usuarios-lista.componen
 import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { UsuariosSalvarComponent } from './usuarios-salvar/usuarios-salvar.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
   imports: [
     CommonModule,
     UsuariosRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    FormsModule
   ]
 })
 export class UsuariosModule { }
