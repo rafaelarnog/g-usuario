@@ -2,17 +2,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">
-                <h2 class="titulo-secao-card">Cadastrar Perfil</h2>
+                <h2 class="titulo-secao-card">{{ titulo }}</h2>
             </div>
-            <form class="form-card-conteudo">
+            <form #perfilForm="ngForm" (ngSubmit)="save()" class="form-card-conteudo">
                 <div class="mb-3">
                   <label for="inputNomePerfil" class="form-label">Nome do perfil *</label>
-                  <input type="text" class="form-control" id="inputNomePerfil">
+                  <input type="text" class="form-control" id="inputNomePerfil" name="nome" [(ngModel)]="perfil.nome">
                   <div class="form-text">* Obrigatório</div>
                 </div>
                 <div class="text-end">
                     <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="perfil.nome == ''">{{ acao }}</button>
                 </div>
             </form>
         </div>

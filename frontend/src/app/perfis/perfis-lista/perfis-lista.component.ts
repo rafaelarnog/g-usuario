@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Perfil } from '../perfil';
+import { PerfisDeletarComponent } from '../perfis-deletar/perfis-deletar.component';
 import { PerfisSalvarComponent } from '../perfis-salvar/perfis-salvar.component';
+import { PerfisService } from '../perfis.service';
 
 @Component({
   selector: 'app-perfis-lista',
@@ -12,18 +14,17 @@ import { PerfisSalvarComponent } from '../perfis-salvar/perfis-salvar.component'
 export class PerfisListaComponent implements OnInit {
 
   //Perfis
-  perfis: Perfil[] = [
-    { id: 1, nome: 'Perfil 1' },
-    { id: 2, nome: 'Perfil 2' },
-    { id: 3, nome: 'Perfil 3' }
-  ];
+  perfis: Perfil[] = [];
 
   //Tabela
   columnMode: DatatableComponent['columnMode'] = 'force';
   loading: boolean = false;
   messagesTable = {};
 
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private perfilService: PerfisService
+  ) {
     this.messagesTable = {
       emptyMessage: 'Nenhum perfil encontrado!',
 
@@ -34,10 +35,31 @@ export class PerfisListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getPerfis();
   }
 
-  openModalPerfis() {
+  openModalPerfis(id: number) {
     const modalRef = this.modalService.open(PerfisSalvarComponent, { size: 'lg', centered: true, scrollable: true, backdrop: 'static'  });
+    modalRef.componentInstance.id = id;
+
+    modalRef.result.then((value) => {
+      this.getPerfis();
+    });
+  }
+
+  openModalDeletarPerfis(id: number) {
+    const modalRef = this.modalService.open(PerfisDeletarComponent, { size: 'lg', centered: true, scrollable: true, backdrop: 'static'  });
+    modalRef.componentInstance.id = id;
+
+    modalRef.result.then((value) => {
+      this.getPerfis();
+    });
+  }
+
+  getPerfis() {
+    this.perfilService
+      .getPerfis()
+      .subscribe( response => this.perfis = response );
   }
 
 }

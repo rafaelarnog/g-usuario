@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <form #perfilForm="ngForm" (ngSubmit)="delete()" class="form-card-conteudo">
+                <p class="text-center mensagem-confimacao">Você realmente deseja remover o perfil {{ perfil.nome }}?</p>
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary btn-cancelar" (click)="activeModal.close()">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Remover</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
