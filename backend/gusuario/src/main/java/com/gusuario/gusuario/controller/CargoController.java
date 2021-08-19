@@ -20,6 +20,11 @@ public class CargoController {
         return ResponseEntity.ok().body(cargoService.findAll());
     }
 
+    @GetMapping(value = "/{id}")
+    private ResponseEntity<Cargo> findById(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(cargoService.findById(id));
+    }
+
     @PostMapping(value = "/add")
     private ResponseEntity<Cargo> create(@RequestBody Cargo cargo){
         return ResponseEntity.ok().body(cargoService.create(cargo));

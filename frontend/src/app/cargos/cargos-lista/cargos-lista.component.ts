@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Cargo } from '../cargo';
 import { CargosCadastroComponent } from '../cargos-cadastro/cargos-cadastro.component';
+import { CargosService } from '../cargos.service';
 
 @Component({
   selector: 'app-cargos-lista',
@@ -12,11 +13,7 @@ import { CargosCadastroComponent } from '../cargos-cadastro/cargos-cadastro.comp
 export class CargosListaComponent implements OnInit {
 
   //Cargos
-  cargos: Cargo[] = [
-    { id: 1, nome: 'Desenvolvedor' },
-    { id: 2, nome: 'Product Owner' },
-    { id: 3, nome: 'Gerente de Projetos' }
-  ];
+  cargos: Cargo[] = [];
 
   //Tabela
   columnMode: DatatableComponent['columnMode'] = 'force';
@@ -24,7 +21,10 @@ export class CargosListaComponent implements OnInit {
   messagesTable = {};
 
 
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private cargoService: CargosService
+  ) {
     this.messagesTable = {
       emptyMessage: 'Nenhum cargo encontrado!',
 
@@ -35,10 +35,22 @@ export class CargosListaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCargos();
   }
 
-  openModalCargos() {
+  openModalCargos(id: number) {
     const modalRef = this.modalService.open(CargosCadastroComponent, { size: 'lg', centered: true, scrollable: true, backdrop: 'static'  });
+    modalRef.componentInstance.id = id;
+
+    modalRef.result.then((value) => {
+      this.getCargos();
+    });
+  }
+
+  getCargos() {
+    this.cargoService
+      .getCargos()
+      .subscribe( response => this.cargos = response );
   }
 
 }

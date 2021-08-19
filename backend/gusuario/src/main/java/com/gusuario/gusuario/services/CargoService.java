@@ -23,6 +23,10 @@ public class CargoService {
         return cargoRepository.getAllOrderByNome().stream().collect(Collectors.toList());
     }
 
+    public Cargo findById(Long id){
+        return cargoRepository.findById(id).orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     public Cargo create(Cargo cargo){
         if(cargo != null
                 && (cargo.getNome() == null

@@ -4,6 +4,7 @@ import { CargosListaComponent } from './cargos-lista/cargos-lista.component';
 import { CargosRoutingModule } from './cargos-routing.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CargosCadastroComponent } from './cargos-cadastro/cargos-cadastro.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { CargosCadastroComponent } from './cargos-cadastro/cargos-cadastro.compo
   imports: [
     CommonModule,
     CargosRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    FormsModule
   ]
 })
 export class CargosModule { }
