@@ -67,6 +67,7 @@ export class UsuariosSalvarComponent implements OnInit {
             this.titulo = "Editar Usuário";
             this.acao = "Editar"
             this.cargoId = this.usuario.cargo.id;
+            this.perfisSelected = this.usuario.perfis;
             this.dataNascUsuario = this.datePipe.transform(this.usuario.dataNascimento, 'yyyy-MM-dd', 'UTC');
           },
           errorResponse => {
