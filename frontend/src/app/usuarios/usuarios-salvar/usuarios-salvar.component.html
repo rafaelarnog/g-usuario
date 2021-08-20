@@ -42,6 +42,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputPerfisUsuario" class="form-label">Perfil</label>
+                        <p class="msg-aviso" *ngIf="perfis.length == 0">Sem perfis adicionados no momento!</p>
                         <div class="form-check" *ngFor="let p of perfis">
                             <input 
                                 class="form-check-input"
@@ -64,7 +65,7 @@
                 </div>
                 <div class="text-end">
                     <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">{{ acao }}</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="usuario.nome == '' || usuario.cpf == '' || cargoId == 0">{{ acao }}</button>
                 </div>
             </form>
         </div>

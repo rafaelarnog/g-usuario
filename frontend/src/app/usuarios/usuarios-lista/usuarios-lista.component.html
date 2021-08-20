@@ -63,6 +63,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
+                            <p *ngIf="value == ''">-</p>
                             <p>{{ value | date: "dd/MM/yyyy":"UTC" }}</p>
                         </ng-template>
                     </ngx-datatable-column>
@@ -72,6 +73,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
+                            <p *ngIf="value == ''">-</p>
                             <div>
                                 <p *ngIf="value == 'FEMININO'">F</p>
                                 <p *ngIf="value == 'MASCULINO'">M</p>
@@ -93,6 +95,7 @@
                             let-value="value"
                             ngx-datatable-cell-template
                         >
+                            <p *ngIf="value.length == 0">-</p>
                             <div *ngFor="let p of value">
                                 <p>{{ p.nome }}</p>
                             </div>
