@@ -8,6 +8,9 @@
                 <div class="mb-3">
                   <label for="inputNomeCargo" class="form-label">Nome do cargo *</label>
                   <input type="text" class="form-control" id="inputNomeCargo" name="nome" [(ngModel)]="cargo.nome">
+                  <div class="alert alert-danger" role="alert" *ngIf="error == true">
+                    {{ mensagemErro }}
+                  </div>
                   <div class="form-text">* Obrigatório</div>
                 </div>
                 <div class="text-end">

@@ -11,7 +11,7 @@
                         <input type="text" class="form-control" id="inputNomeUsuario" name="nome" [(ngModel)]="usuario.nome">
                     </div>
                     <div class="mb-3">
-                        <label for="inputCpfUsuario" class="form-label">Cpf *</label>
+                        <label for="inputCpfUsuario" class="form-label">CPF *</label>
                         <input type="text" class="form-control" id="inputCpfUsuario" name="cpf" [(ngModel)]="usuario.cpf">
                     </div>
                     <div class="mb-3">
@@ -58,6 +58,9 @@
                         
                         <div class="form-text">* Obrigatório</div>
                     </div>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="error == true">
+                    {{ mensagemErro }}
                 </div>
                 <div class="text-end">
                     <button type="button" class="btn btn-danger btn-cancelar" (click)="activeModal.close()">Cancelar</button>

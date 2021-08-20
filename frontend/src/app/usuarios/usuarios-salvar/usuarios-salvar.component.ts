@@ -37,6 +37,10 @@ export class UsuariosSalvarComponent implements OnInit {
   //Data usuário
   dataNascUsuario!: any;
 
+  //Erro
+  error: boolean = false;
+  mensagemErro: string = "";
+
   constructor(
     public activeModal: NgbActiveModal,
     public cargoService: CargosService,
@@ -74,6 +78,7 @@ export class UsuariosSalvarComponent implements OnInit {
 
   save(){
 
+    this.error = false;
     this.usuario.perfis = this.perfisSelected;
     this.usuario.dataNascimento = this.dataNascUsuario;
 
@@ -84,7 +89,8 @@ export class UsuariosSalvarComponent implements OnInit {
           this.activeModal.close();
         },
         errorResponse => {
-          console.log(errorResponse);
+          this.error = true,
+          this.mensagemErro = "Dados inválidos!"
         });
     } else{
       this.usuarioService
@@ -93,7 +99,8 @@ export class UsuariosSalvarComponent implements OnInit {
           this.activeModal.close();
         },
         errorResponse => {
-          console.log(errorResponse.error.status);
+          this.error = true,
+          this.mensagemErro = "Dados inválidos!"
         });
     }
     

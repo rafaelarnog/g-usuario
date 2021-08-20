@@ -20,6 +20,10 @@ export class CargosCadastroComponent implements OnInit {
   titulo: string = "Cadastrar Cargo";
   acao: string = "Cadastrar";
 
+  //Erro
+  error: boolean = false;
+  mensagemErro: string = "";
+
   constructor(
     public activeModal: NgbActiveModal,
     public cargoService: CargosService
@@ -43,24 +47,32 @@ export class CargosCadastroComponent implements OnInit {
   }
 
   save(){
-    if(this.id){
-      this.cargoService
-        .edit(this.cargo)
-        .subscribe( response => {
-          this.activeModal.close();
-        },
-        errorResponse => {
-          console.log(errorResponse);
-        });
-    } else{
-      this.cargoService
-        .create(this.cargo)
-        .subscribe( () => {
-          this.activeModal.close();
-        },
-        errorResponse => {
-          console.log(errorResponse.error.status);
-        });
+    if(/^\s+$/.test(this.cargo.nome)) {
+      this.error = true;
+      this.mensagemErro = "Campo obrigatório!";
+    }
+    else {
+      if(this.id){
+        this.cargoService
+          .edit(this.cargo)
+          .subscribe( response => {
+            this.activeModal.close();
+          },
+          error => {
+            this.error = true,
+            this.mensagemErro = "Cargo já existente!"
+          });
+      } else{
+        this.cargoService
+          .create(this.cargo)
+          .subscribe( response => {
+            this.activeModal.close();
+          },
+          error => {
+            this.error = true,
+            this.mensagemErro = "Cargo já existente!"
+          });
+      }
     }
   }
 

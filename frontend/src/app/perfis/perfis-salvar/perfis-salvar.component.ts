@@ -20,6 +20,10 @@ export class PerfisSalvarComponent implements OnInit {
   titulo: string = "Cadastrar Perfil";
   acao: string = "Cadastrar";
 
+  //Erro
+  error: boolean = false;
+  mensagemErro: string = "";
+
   constructor(
     public activeModal: NgbActiveModal,
     public perfilService: PerfisService  
@@ -43,24 +47,32 @@ export class PerfisSalvarComponent implements OnInit {
   }
 
   save(){
-    if(this.id){
-      this.perfilService
-        .edit(this.perfil)
-        .subscribe( response => {
-          this.activeModal.close();
-        },
-        errorResponse => {
-          console.log(errorResponse);
-        });
-    } else{
-      this.perfilService
-        .create(this.perfil)
-        .subscribe( () => {
-          this.activeModal.close();
-        },
-        errorResponse => {
-          console.log(errorResponse.error.status);
-        });
+    if(/^\s+$/.test(this.perfil.nome)) {
+      this.error = true;
+      this.mensagemErro = "Perfil obrigatório!";
+    }
+    else {
+      if(this.id){
+        this.perfilService
+          .edit(this.perfil)
+          .subscribe( response => {
+            this.activeModal.close();
+          },
+          errorResponse => {
+            this.error = true,
+            this.mensagemErro = "Perfil já existente!"
+          });
+      } else{
+        this.perfilService
+          .create(this.perfil)
+          .subscribe( () => {
+            this.activeModal.close();
+          },
+          errorResponse => {
+            this.error = true,
+            this.mensagemErro = "Perfil já existente!"
+          });
+      }
     }
   }
 
