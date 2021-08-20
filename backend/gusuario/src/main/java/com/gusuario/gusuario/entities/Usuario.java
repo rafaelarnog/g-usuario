@@ -25,6 +25,8 @@ public class Usuario extends Pessoa{
 
     private SexoPessoa sexo;
 
+    private Date dataCadastro;
+
     @ManyToOne
     private Cargo cargo;
 

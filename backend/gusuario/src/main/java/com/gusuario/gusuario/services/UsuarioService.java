@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,16 +35,21 @@ public class UsuarioService {
 
     public Usuario create(Usuario usuario){
         if(usuario != null
-                && usuario.getNome() == null
+                && (usuario.getNome() == null
                 || usuario.getNome().isBlank()
 
                 || usuario.getCpf() == null
                 || usuario.getCpf().isBlank()
 
-                || usuario.getCargo() == null
+                || usuario.getCargo() == null)
+
+                || usuarioRepository.findUsuarioByCpf(usuario.getCpf()) != null
+
         ){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Dados inválidos!");
         }
+
+        usuario.setDataCadastro(new Date());
 
         Usuario novoUsuario = usuarioRepository.save(usuario);
         return usuarioRepository.findById(novoUsuario.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!"));
